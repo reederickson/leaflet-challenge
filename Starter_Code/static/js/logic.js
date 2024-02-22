@@ -50,31 +50,31 @@ function createMap(earthquakes) {
 
     // Create map to display street and earthquake layers
     let mymap = L.map("map", {
-        center: [40, -100],
+        center: [39, -115],
         zoom: 5,
         layers: [street, earthquakes]
     });
 
     // Create legend control
-    let legend = L.control({ position: 'bottomright' });
+    let legend = L.control({ position: 'bottomright'});
     legend.onAdd = function (map) {
         let div = L.DomUtil.create('div', 'info legend'),
-            depths = [-10, 10, 30, 50, 70, 90];
-            labels = [];
-            legendInfo = "<h4>Depth</h4>"
+            depth = [-10, 10, 30, 50, 70, 90];
+            label=[];
 
-        // Loop through depth intervals to create legend content
-        for (let i = 0; i < depths.length; i++) {
-            let color = mapColor(depths[i] + 1);
-            let label = depths[i] + (depths[i + 1] ? '&ndash;' + depths[i + 1] : '+');
-            div.innerHTML += '<i style="background:' + color + '"></i> ' + label + '<br>';
-        }
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (let i = 0; i < depth.length; i++) {
+        let color = mapColor(depth[i] + 1);
+        let label = depth[i] + (depth[i + 1] ? '&ndash;' + depth[i + 1] : '+');
+        div.innerHTML += '<i style="background:' + color + '"></i> ' + label + '<br>';
+    }
 
         // Apply CSS styling to the legend control
         div.style.backgroundColor = 'white';
         div.style.padding = '10px';
         div.style.border = '1px solid #ccc';
-        return div;
+    
+    return div;
     };
     legend.addTo(mymap);
 
