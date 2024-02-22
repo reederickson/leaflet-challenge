@@ -57,26 +57,33 @@ function createMap(earthquakes) {
 
     // Create legend control
     let legend = L.control({ position: 'bottomright'});
-    legend.onAdd = function (map) {
-        let div = L.DomUtil.create('div', 'info legend'),
-            depth = [-10, 10, 30, 50, 70, 90];
-            label=[];
+    legend.onAdd = function (mymap) {
+        let div = L.DomUtil.create('div', 'legend'),
+            depths = [-10, 10, 30, 50, 70, 90];
+            labels = []; 
+        // Add a label above the legend
+        div.innerHTML = '<p>Depth of the event <br> in kilometers</p>';
 
-    // loop through our density intervals and generate a label with a colored square for each interval
-    for (let i = 0; i < depth.length; i++) {
-        let color = mapColor(depth[i] + 1);
-        let label = depth[i] + (depth[i + 1] ? '&ndash;' + depth[i + 1] : '+');
-        div.innerHTML += '<i style="background:' + color + '"></i> ' + label + '<br>';
-    }
+        // loop through our density intervals and generate a label with a colored square for each interval
+        for (let i = 0; i < depths.length; i++) {
+            let color = mapColor(depths[i] + 1);
+            let label = depths[i] + (depths[i + 1] ? '&ndash;' + depths[i + 1] : '+');
+            
+            // Create the colored square for each interval
+            let legendItem = document.createElement('div');
+            legendItem.innerHTML = '<i style="background:' + color + '; width: 20px; height: 20px; display: inline-block;"></i> ' + label;
+            div.appendChild(legendItem);
+        }
 
         // Apply CSS styling to the legend control
         div.style.backgroundColor = 'white';
-        div.style.padding = '10px';
+        div.style.padding = '3px';
         div.style.border = '1px solid #ccc';
-    
-    return div;
+        
+        return div;
     };
     legend.addTo(mymap);
+
 
     // Layer control
     // Create baseMaps object
