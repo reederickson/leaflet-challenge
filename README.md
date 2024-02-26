@@ -11,7 +11,7 @@ Connected to [geojson API](https://earthquake.usgs.gov/earthquakes/feed/v1.0/sum
 The markers size correspond to the earthquake magnitude and the color corrosponds to the earthquake depth (earthquakes with greater depth appear darker).
 Included popups that provide additional information about the earthquake when its associated marker is clicked.
 The legend provides context for my map data.
-![Earthquake Visualization](Starter_Code/Images/EricksonMap.png)
+![Earthquake Visualization](Leaflet-Part-1/Starter_Code/Images/EricksonMap.png)
 
 ### Technologies Used
 HTML
